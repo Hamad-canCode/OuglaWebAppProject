@@ -1,0 +1,33 @@
+﻿@model OuglaWebApp.Models.Info
+
+
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <form class="border p-4 w-50" method="post" asp-action="AdminLogin" asp-controller="Admin">
+            <div class="text-center">
+                <h1>Login</h1>
+            </div>
+            
+            <div>
+                <label class="form-label">Name: </label>
+                <input class="form-control" type="text" asp-for="Sitename" />
+                <span asp-validation-for="Sitename" class="text-danger"></span>
+            </div>
+            <div>
+                <label class="form-label">Name: </label>
+                <input class="form-control" type="text" asp-for="Ownername" />
+                <span asp-validation-for="Ownername" class="text-danger"></span>
+            </div>
+            <div>
+                <label class="form-label">Password: </label>
+                <input class="form-control" type="password" asp-for="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span><br />
+            </div>
+
+            <div class="text-center">
+                <input class="btn btn-primary mt-2" type="submit" value="Log In" />
+            </div>
+
+        </form>
+    </div>
+</div>

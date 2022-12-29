@@ -1,0 +1,53 @@
+﻿@model OuglaWebApp.Models.Info
+@{
+    bool validSiteName = Convert.ToBoolean(ViewData["validate"]);
+}
+<div class="row">
+
+
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <h1>Get your Blog Live in under 10 minutes using Ougla!</h1>
+        <p>
+
+        </p>
+    </div>
+
+
+    <div class="col-lg-6 col-md-6 col-sm-12 justify-content-center align-content-center">
+        <form class="border p-4" method="post" asp-action="SignUp" asp-controller="Home">
+            <div class="text-center">
+                <h1>Sign-up</h1>
+            </div>
+                 
+            <div>
+                <label class="form-label">Name: </label>
+                <input class="form-control" type="text" asp-for="Ownername" />
+                <span asp-validation-for="Ownername" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label class="form-label">Site Name: </label>
+                <input class="form-control" type="text" asp-for="Sitename" />
+                <span asp-validation-for="Sitename" class="text-danger"></span><br />
+                @if (validSiteName == false)
+                {
+                    <span class="text-danger">Unfortunatley this site name is already taken</span>
+                }
+            </div>
+                
+            <div>
+                <label class="form-label">Password: </label>
+                <input class="form-control" type="password" asp-for="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span><br />
+            </div>
+            <div>
+                <label class="form-label">Retype Password: </label>
+                <input class="form-control" type="password" asp-for="ComparePassword" />
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-2" type="submit" value="Sign-up" />
+            </div>
+
+        </form>
+    </div>
+</div>
