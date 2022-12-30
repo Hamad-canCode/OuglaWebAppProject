@@ -8,6 +8,7 @@ namespace OuglaWebApp.Controllers
     {
         
         bool ValidateSiteName = false;
+        public static string siteName=null;
         SiteControll siteControl = null;
         SignUp signUp = null;
 
@@ -20,7 +21,7 @@ namespace OuglaWebApp.Controllers
         [Route("/{id}/admin")]
         public IActionResult Admin(string id)
         {
-            var site = id;
+            siteName = id;
             if (ValidateSiteName==false)
             {
                 if (siteControl.ValidateSiteName(id))
@@ -44,7 +45,7 @@ namespace OuglaWebApp.Controllers
         [HttpPost]
         public IActionResult AdminLogin(Info infoModel)
         {
-            if (signUp.LogIn(infoModel))
+            if (signUp.LogIn(infoModel,siteName))
             {
                 return View("Editor");
             }
@@ -52,6 +53,12 @@ namespace OuglaWebApp.Controllers
             {
                 return RedirectToAction("Admin");
             }
+        }
+
+
+        public IActionResult BlogEditor()
+        {
+            return View();
         }
     }
 }

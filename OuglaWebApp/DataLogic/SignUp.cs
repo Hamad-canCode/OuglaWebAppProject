@@ -38,9 +38,9 @@ namespace OuglaWebApp.DataLogic
             con.Close();
         }
 
-        public bool LogIn(Info infoModel)
+        public bool LogIn(Info infoModel,string siteName)
         {
-            var tempUser = _context.Infos.FirstOrDefault(u => u.Ownername == infoModel.Ownername && u.Password == infoModel.Password && u.Sitename == infoModel.Sitename);
+            var tempUser = _context.Infos.FirstOrDefault(u => u.Ownername == infoModel.Ownername && u.Password == infoModel.Password && u.Sitename == siteName);
 
             if (tempUser != null)
             {
