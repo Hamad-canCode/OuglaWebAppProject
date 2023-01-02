@@ -12,6 +12,7 @@ namespace OuglaWebApp.Controllers
         [HttpPost]
         public IActionResult UploadBlog(BlogModel blogModel)
         {
+
             return View();
         }
     }

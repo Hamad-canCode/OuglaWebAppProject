@@ -7,20 +7,23 @@
 <script src="~/js/ckeditor/ckeditor.js"></script>
 <section class="container">
 
-        <form class="border p-4" method="post" asp-action="UploadBlog" asp-controller="Blog">
-            <div>
-                <img src="~/images/blank.png" />
-                @*<input class="btn" type="submit" value="Uplaod" />*@
-            </div>
-            <div>
-                <label class="form-label">Blog Title: </label>
-                <input class="form-control" type="text" asp-for="Title" />
-              @*  <span asp-validation-for="" class="text-danger"></span>*@
-            </div>
-            <div>
-                <textarea asp-for="Article" id="Description" class="ckeditor"></textarea>
-            </div>
-        </form>
+    <form class="border p-4" method="post" asp-action="UploadBlog" asp-controller="Blog">
+        <div>
+            <img src="~/images/blank.png" />
+            @*<input class="btn" type="submit" value="Uplaod" />*@
+        </div>
+        <div>
+            <label class="form-label">Blog Title: </label>
+            <input class="form-control" type="text" asp-for="Title" />
+            @*  <span asp-validation-for="" class="text-danger"></span>*@
+        </div>
+        <div>
+            <textarea asp-for="Content" id="Description" class="ckeditor"></textarea>
+        </div>
+        <div class="text-center">
+            <input class="btn btn-primary mt-2" type="submit" value="Sign-up" />
+        </div>
+    </form>
 
 </section>
 
