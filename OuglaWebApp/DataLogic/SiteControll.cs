@@ -21,8 +21,5 @@ namespace OuglaWebApp.DataLogic
                 return false;
             }
         }
-
-
-
     }
 }

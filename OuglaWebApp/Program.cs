@@ -13,6 +13,7 @@ builder.Services.AddDbContext<OuglaContext>(optionsBuilder =>
 {
     optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
 builder.Services.AddScoped<SignUp, SignUp>();
 builder.Services.AddScoped<SiteControll, SiteControll>();
 
