@@ -52,6 +52,7 @@ namespace OuglaWebApp.Controllers
             }
             else
             {
+                TempData["msg"] = "<script>alert('Oops! Something went wrong, Incorrect Name or Password Entred');</script>";
                 return RedirectToAction("Admin");
             }
         }
