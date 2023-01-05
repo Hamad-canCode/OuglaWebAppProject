@@ -10,8 +10,10 @@ namespace OuglaWebApp.Controllers
 {
     public class BlogController : Controller
     {
-        BlogHandling blog=new BlogHandling();
+        BlogHandling blog = new BlogHandling();
         public static string siteName;
+
+
         public IActionResult BlogEditor()
         {
             if (TempData.ContainsKey("siteName"))
@@ -23,44 +25,33 @@ namespace OuglaWebApp.Controllers
         {
             try
             {
-                using (var target = new MemoryStream())
+                if (file!=null)
                 {
-                    await file.CopyToAsync(target);
-                    blogModel.Image = target.ToArray();
+                    using (var target = new MemoryStream())
+                    {
+                        await file.CopyToAsync(target);
+                        blogModel.Image = target.ToArray();
+                    }
+                    blog.UploadBlog(blogModel, siteName);
+                    TempData["msg"] = "<script>alert('Your Blog has been Published!!!');</script>";
+                    return RedirectToAction("BlogEditor", "Blog");
                 }
-                blog.UploadBlog(blogModel, siteName);
-                return View();
+                else
+                {
+                    blog.UploadBlog(blogModel, siteName);
+                    TempData["msg"] = "<script>alert('Your Blog has been Published!!!');</script>";
+                    return RedirectToAction("BlogEditor", "Blog");
+                }
             }
             catch (Exception)
             {
                 TempData["msg"] = "<script>alert('Oops! Something went wrong');</script>";
-                return View();
+                return RedirectToAction("BlogEditor", "Blog");
             }
             //var files = Request.Form.Files;
 
         }
 
-        [HttpPost]
-       public async Task<IActionResult> getfile(IFormFile Image)
-        {
-            using (var target = new MemoryStream())
-            {
-                await Image.CopyToAsync(target);
-
-                // Upload the file if less than 2 MB
-                if (target.Length < 2097152)
-                {
-                    var img = new BlogModel()
-                    {
-                        Image = target.ToArray()
-                    };
-                }
-                else
-                {
-                    ModelState.AddModelError("File", "The file is too large.");
-                }
-            }
-            return View();
-        }
     }
 }
+
