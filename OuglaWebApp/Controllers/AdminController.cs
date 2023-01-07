@@ -49,8 +49,8 @@ namespace OuglaWebApp.Controllers
             if (signUp.LogIn(infoModel,siteName))
             {
                 TempData["siteName"] = siteName;
-                ViewData["Logged"] = "_EditorLayout";
-                return RedirectToAction("BlogEditor", "Blog");
+                TempData["logged"]= "true";
+                return Redirect("/" + siteName);
             }
             else
             {
