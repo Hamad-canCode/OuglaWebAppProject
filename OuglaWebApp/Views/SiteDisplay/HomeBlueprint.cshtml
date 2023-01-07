@@ -1,3 +1,48 @@
 ﻿@{
     Layout = "_BlueprintLayout";
 }
+<!-- Full Page Image Header with Vertically Centered Content -->
+<header class="masthead">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+                <h1 class="fw-light">Vertically Centered Masthead Content</h1>
+                <p class="lead">A great starter layout for a landing page</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="about-section">
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6">
+            <h2>About Me</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+            </p>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6">
+            <img src="~/default.png" class="img-fluid" alt="...">
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <h2>Articles:</h2>
+    <div class="row">
+        @{
+            for (int i = 0; i < 3; i++)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img src="~/default.png" class="img-fluid" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

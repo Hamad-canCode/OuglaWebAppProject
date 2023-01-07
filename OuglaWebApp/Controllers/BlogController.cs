@@ -48,8 +48,14 @@ namespace OuglaWebApp.Controllers
                 TempData["msg"] = "<script>alert('Oops! Something went wrong');</script>";
                 return RedirectToAction("BlogEditor", "Blog");
             }
-            //var files = Request.Form.Files;
+            
+        }
+        public IActionResult SiteEditor()
+        {
+            if (TempData.ContainsKey("siteName"))
+                siteName = TempData["siteName"] as string;
 
+            return View();
         }
 
     }
