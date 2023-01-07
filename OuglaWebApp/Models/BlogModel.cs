@@ -4,7 +4,7 @@ namespace OuglaWebApp.Models
 {
     public class BlogModel
     {
-        [Required]
+        [Required(ErrorMessage = "Please Enter a title")]
         public string Title { get; set; }
         public string Content { get; set; }
         public byte[] Image { get; set; }

@@ -45,14 +45,16 @@ namespace OuglaWebApp.Controllers
         [HttpPost]
         public IActionResult AdminLogin(Info infoModel)
         {
+
             if (signUp.LogIn(infoModel,siteName))
             {
                 TempData["siteName"] = siteName;
+                ViewData["Logged"] = "_EditorLayout";
                 return RedirectToAction("BlogEditor", "Blog");
             }
             else
             {
-                TempData["msg"] = "<script>alert('Oops! Something went wrong, Incorrect Name or Password Entred');</script>";
+                TempData["msg"] = "Incorrect Name or Password";
                 return RedirectToAction("Admin",new { id=siteName});
             }
         }

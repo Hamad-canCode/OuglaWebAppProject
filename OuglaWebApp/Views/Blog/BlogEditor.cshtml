@@ -1,15 +1,18 @@
 ﻿@model BlogModel
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
+    Layout = "_EditorLayout";
 }
-<script src="~/js/ckeditor/ckeditor.js"></script>
-<section class="container">
 
+<section class="container">
+    <script src="~/js/ckeditor/ckeditor.js"></script>
     <form class="border p-4" method="post" enctype="multipart/form-data" asp-action="UploadBlog" asp-controller="Blog">
         <div>
             <div id="img-preview"></div>
+
+            <label class="custom-file-upload">
+                <input type="file" value="AuthImg" name="AuthImg" id="AuthImg" accept="image/*" title="" />
+                Upload
+            </label>
             <input asp-for="Image" type="file" name="file" id="file" accept="image/*" onchange="fileCheck(this); " />
             @*<input class="btn" type="submit" value="Uplaod" />*@
         </div>
@@ -25,25 +28,22 @@
             <input class="btn btn-primary mt-2" type="submit" value="Publish" />
         </div>
     </form>
+    @Html.Raw(TempData["msg"])
+    @*Script to display the text Editor*@
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('#Description')
+        }
+    </script>
 
-</section>
-
-@Html.Raw(TempData["msg"])
-@*Script to display the text Editor*@
-<script>
-    $(document).ready(function () {
-        CKEDITOR.replace('#Description')
-    }
-</script>
-
- //Script to Preview the selected Image
-<script>
-    const chooseFile = document.getElementById("file");
-    const imgPreview = document.getElementById("img-preview");
-    chooseFile.addEventListener("change", function () {
-        getImgData();
-    });
-    function getImgData() {
+    @*Script to Preview the selected Image*@
+    <script>
+                    const chooseFile = document.getElementById("file");
+        const imgPreview = document.getElementById("img-preview");
+        chooseFile.addEventListener("change", function () {
+            getImgData();
+        });
+        function getImgData() {
             const files = chooseFile.files[0];
             if (files) {
                 const fileReader = new FileReader();
@@ -54,4 +54,6 @@
                 });
             }
         }
-</script>
+    </script>
+</section>
+

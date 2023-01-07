@@ -18,7 +18,9 @@
                 <input class="form-control" type="password" asp-for="Password" />
                 <span asp-validation-for="Password" class="text-danger"></span><br />
             </div>
-
+            <div id="msg">
+                <label class="text-danger">@TempData["msg"]</label>
+            </div>
             <div class="text-center">
                 <input class="btn btn-primary mt-2" type="submit" value="Log In" />
             </div>
@@ -26,4 +28,4 @@
         </form>
     </div>
 </div>
-@Html.Raw(TempData["msg"])
+

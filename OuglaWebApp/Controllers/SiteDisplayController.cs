@@ -8,6 +8,7 @@ namespace OuglaWebApp.Controllers
     {
 
         SiteControll siteControl = null;
+        public static string siteName;
         public SiteDisplayController(SiteControll siteControle)
         {
             siteControl = siteControle;
@@ -18,6 +19,22 @@ namespace OuglaWebApp.Controllers
         {
             if (siteControl.ValidateSiteName(id))
             {
+                siteName = id;
+                @ViewData["Site"] = id;
+                return View();
+            }
+            else
+            {
+                return View("Error404");
+            }
+        }
+        [Route("/{id}/about")]
+        public IActionResult AboutBluePrint(string id)
+        {
+            id = siteName;
+            if (siteControl.ValidateSiteName(id))
+            {
+                @ViewData["Site"] = id;
                 return View();
             }
             else
@@ -26,7 +43,6 @@ namespace OuglaWebApp.Controllers
             }
         }
 
-        
         //public IActionResult OpenSite(string id) 
         //{
 

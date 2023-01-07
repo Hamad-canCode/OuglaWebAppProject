@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OuglaWebApp</title>
+    <link href="~/css/editorlayout.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
+    <link rel="stylesheet" href="~/OuglaWebApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+
+
+    <div class="row">
+
+        <div class="sidebar col-lg-2 col-md-2 col-xl-2 bg-secondary">
+            <div class="functioms">
+                <form class="" method="post" enctype="multipart/form-data" asp-action="" asp-controller="">
+                    <table>
+                        <tr>
+                            <td>
+                                <label>Logo: </label>
+                                <label class="custom-file-upload">
+                                    <input type="file" value="Logo" name="logo" id="logo" accept="image/*" title="" />
+                                    Upload
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Banner Image: </label>
+                                <label class="custom-file-upload">
+                                    <input type="file" value="Banner" name="Banner" id="Banner" accept="image/*" title="" />
+                                    Upload
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Obj Image: </label>
+                                <label class="custom-file-upload">
+                                    <input type="file" value="AuthImg" name="AuthImg" id="AuthImg" accept="image/*" title="" />
+                                    Upload
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>About Text:</label>
+                                <input type="text" EnableViewState="False" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="" />
+                                <input type="text" EnableViewState="False" placeholder="Paste Link" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="" />
+                                <input type="text" EnableViewState="False" placeholder="Paste Link" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="" />
+                                <input type="text" EnableViewState="False" placeholderedr="Paste Link" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="round-button" style="background: #E74C3C;"></button>
+                                <button class="round-button" style="background: #9B59B6;"></button>
+                                <button class="round-button" style="background: #3498DB;"></button>
+                                <button class="round-button" style="background: #2ECC71;"></button>
+                                <button class="round-button" style="background: #F1C40F;"></button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="buttonContainer">
+                <input type="submit" class="btn btn-light" value="Editor" />
+                <input type="submit" class="btn btn-primary" value="Publish" />
+            </div>
+        </div>
+
+        <div class="content container col-lg-9 col-md-9 col-xl-9 bg-light">
+            @RenderBody()
+        </div>
+    </div>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+
