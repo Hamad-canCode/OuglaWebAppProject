@@ -1,15 +1,16 @@
 ﻿@{
-    string log = TempData["logged"].ToString();
-    if (log=="true")//LoggedIn
+    var log = TempData["logged"];
+    if (log != null)
     {
         Layout = "_EditorLayout";
-    }      
+    }
     else
     {
         Layout = "";
     }
-}
 
+}
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
