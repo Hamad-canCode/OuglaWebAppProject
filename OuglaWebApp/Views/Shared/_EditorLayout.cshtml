@@ -82,7 +82,8 @@
                 </form>
             </div>
             <div class="buttonContainer">
-                <input type="submit" class="btn btn-light" value="Editor" />
+                <input type="submit" class="btn btn-light" value="Editor" href="/@TempData["siteName"]/admin/blogeditor"/>
+                <button class="btn btn-light" asp-route="~/@TempData["siteName"]/admin/blogeditor" href="~/@TempData["siteName"]/admin/blogeditor">Editor</button>
                 <input type="submit" class="btn btn-primary" value="Publish" />
             </div>
         </div>

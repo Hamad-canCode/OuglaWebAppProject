@@ -1,7 +1,9 @@
 ﻿@model BlogModel
 @{
-    Layout = "_EditorLayout";
+    Layout = "_BlogEditorLayout";
 }
+
+
 
 <section class="container">
     <script src="~/js/ckeditor/ckeditor.js"></script>
@@ -10,10 +12,10 @@
             <div id="img-preview"></div>
 
             <label class="custom-file-upload">
-                <input type="file" value="AuthImg" name="AuthImg" id="AuthImg" accept="image/*" title="" />
+                <input asp-for="Image" type="file" name="file" id="file" accept="image/*" onchange="fileCheck(this); " />
                 Upload
             </label>
-            <input asp-for="Image" type="file" name="file" id="file" accept="image/*" onchange="fileCheck(this); " />
+            
             @*<input class="btn" type="submit" value="Uplaod" />*@
         </div>
         <div>

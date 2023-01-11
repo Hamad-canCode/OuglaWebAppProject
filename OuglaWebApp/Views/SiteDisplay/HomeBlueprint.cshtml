@@ -1,4 +1,7 @@
-﻿@{
+﻿@model System.Data.DataTable
+@{
+    var log = TempData["logged"];
+
     Layout = "_BlueprintLayout";
 }
 <!-- Full Page Image Header with Vertically Centered Content -->
@@ -32,17 +35,38 @@
     <h2>Articles:</h2>
     <div class="row">
         @{
-            for (int i = 0; i < 3; i++)
+            if (log ==null)
             {
-                <div class="card" style="width: 18rem;">
-                    <img src="~/default.png" class="img-fluid" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                for (int i = 0; i < 3; i++)
+                {
+                    byte[] Binary = (byte[])(Model.Rows[i]["img"]);
+                    string base64string = Convert.ToBase64String(Binary, 0, Binary.Length);
+                    var imgSrc = "data:image/jpg;base64," + base64string;
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="@imgSrc" class="img-fluid" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@Model.Rows[i]["Title"]</h5>
+                            <a asp-route-id="@Model.Rows[i]["BlogId"]" class="btn btn-primary">Read Blog</a>
+                        </div>
                     </div>
-                </div>
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <img src="~/default.png" class="img-fluid" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                }
             }
         }
+
     </div>
 </div>

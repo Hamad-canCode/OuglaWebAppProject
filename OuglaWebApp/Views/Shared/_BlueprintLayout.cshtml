@@ -1,5 +1,6 @@
 ﻿@{
     var log = TempData["logged"];
+    TempData.Keep("logged");
     if (log != null)
     {
         Layout = "_EditorLayout";

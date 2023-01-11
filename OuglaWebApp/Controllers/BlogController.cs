@@ -13,12 +13,21 @@ namespace OuglaWebApp.Controllers
         BlogHandling blog = new BlogHandling();
         public static string siteName;
 
-
-        public IActionResult BlogEditor()
+        [Route("/{id}/admin/blogeditor")]
+        public IActionResult BlogEditor(string id)
+        
         {
-            if (TempData.ContainsKey("siteName"))
-                siteName = TempData["siteName"] as string;
-            return View();
+            
+            var verified = TempData["verified"];
+            if (Convert.ToBoolean(verified) ==true)
+            {
+                siteName = id;
+                return View();
+            }
+            else
+            {
+                return Redirect($"/{id}/admin");
+            }
         }
         [HttpPost]
         public async Task<IActionResult> UploadBlog(BlogModel blogModel, IFormFile file)
@@ -57,6 +66,7 @@ namespace OuglaWebApp.Controllers
 
             return View();
         }
+
 
     }
 }

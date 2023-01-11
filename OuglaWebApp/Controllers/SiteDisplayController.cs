@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OuglaWebApp.DataLogic;
+using OuglaWebApp.Models;
 
 namespace OuglaWebApp.Controllers
 {
@@ -8,6 +9,7 @@ namespace OuglaWebApp.Controllers
     {
 
         SiteControll siteControl = null;
+        BlogHandling blog = new BlogHandling();
         public static string siteName;
         public SiteDisplayController(SiteControll siteControle)
         {
@@ -15,19 +17,45 @@ namespace OuglaWebApp.Controllers
         }
 
         [Route("/{id}")]
+        
         public IActionResult HomeBluePrint(string id)
         {
+            TempData["verified"] = null;
+            TempData["logged"] = null;
             if (siteControl.ValidateSiteName(id))
             {
                 siteName = id;
                 @ViewData["Site"] = id;
-                return View();
+                var dataset = blog.GetBlogData(id);
+                return View(dataset);
             }
             else
             {
                 return View("Error404");
             }
         }
+
+        [Route("/{id}/admin/editor")]
+        public IActionResult Editor(string id)
+        {
+            bool verified = Convert.ToBoolean(TempData["verified"]);
+            TempData.Keep("verified");
+            string logged="";
+            if (TempData["logged"]!=null)
+            {
+                logged = Convert.ToString(TempData["logged"]);
+            }
+            
+            if ( verified && logged=="true")
+            {
+                return View("HomeBluePrint");
+            }
+            else
+            {
+                return RedirectToAction("Admin", "Admin", new { id = id });
+            }
+        }
+
         [Route("/{id}/about")]
         public IActionResult AboutBluePrint(string id)
         {
@@ -43,9 +71,10 @@ namespace OuglaWebApp.Controllers
             }
         }
 
-        //public IActionResult OpenSite(string id) 
-        //{
-
-        //}
+        [HttpGet]
+        public void getAllBlogs()
+        {
+            
+        }
     }
 }
