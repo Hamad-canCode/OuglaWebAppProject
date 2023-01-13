@@ -1,0 +1,40 @@
+﻿.background {
+    height:100%;
+    width:100%;
+    padding-top:-90px;
+}
+
+.headingStyle {
+    /*color: white;*/
+    background-color: white;
+    font-family:Arial, Helvetica, sans-serif;
+    padding-right: 20px;
+}
+
+.heading{
+    margin-left:70px;
+    margin-top:20px;
+}
+.ilustration {
+    height: 400px;
+    width: 400px;
+    margin-left:20%;
+    margin-top:10%;
+}
+.signup-div {
+ 
+    padding-bottom:60px;
+    
+}
+.signup-form {
+    margin-top: 35px;
+    background-color: white;
+    margin-left: 110px;
+    width: 70%;
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+}
+
+.content{
+    padding-bottom:30px;
+}
