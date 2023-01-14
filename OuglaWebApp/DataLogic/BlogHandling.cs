@@ -12,7 +12,7 @@ namespace OuglaWebApp.DataLogic
     {
 
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-M4962FO\MSSQLSERVER03;Initial Catalog=ougla;Integrated Security=True;TrustServerCertificate=true");
-
+        public DataTable dt = new DataTable();
         public BlogHandling()
         {
 
@@ -60,19 +60,34 @@ namespace OuglaWebApp.DataLogic
         }
         public DataTable GetBlogData(string siteName)
         {
-            var datatable = new DataTable();
+
+            var dataset = new DataTable();
 
             con.Open();
             using (SqlCommand com = new SqlCommand($"select * from BlogsOf{siteName}", con))
             {
                 using (SqlDataAdapter adapter = new SqlDataAdapter(com))
                 {
-                    adapter.Fill(datatable);
+                    adapter.Fill(dataset);
                 }
             }
-
-            return datatable;
+            con.Close();
+            return dataset;
         }
+        public DataTable Blog(int id, string siteName)
+        {
+            var dataset = new DataTable();
 
+            con.Open();
+            using (SqlCommand com = new SqlCommand($"select * from BlogsOf{siteName} where blogid={id}", con))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(com))
+                {
+                    adapter.Fill(dataset);
+                }
+            }
+            con.Close();
+            return dataset;
+        }
     }
 }

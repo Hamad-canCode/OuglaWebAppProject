@@ -1,9 +1,13 @@
 ﻿@model OuglaWebApp.Models.Info
 
 
+<head>
+    <link href="~/css/loginstylesheet.css" rel="stylesheet" />
+</head>
+
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-        <form class="border p-4 w-50" method="post" asp-action="AdminLogin" asp-controller="Admin">
+        <form class="login border p-4" method="post" asp-action="AdminLogin" asp-controller="Admin">
             <div class="text-center">
                 <h1>Login</h1>
             </div>

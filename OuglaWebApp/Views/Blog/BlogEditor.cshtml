@@ -3,19 +3,21 @@
     Layout = "_BlogEditorLayout";
 }
 
-
+<head>
+    <link href="c:\users\lenovo\source\repos\ouglawebapp\ouglawebapp\views\blog\blogeditorstylesheet.css" rel="stylesheet" />
+</head>
 
 <section class="container">
     <script src="~/js/ckeditor/ckeditor.js"></script>
     <form class="border p-4" method="post" enctype="multipart/form-data" asp-action="UploadBlog" asp-controller="Blog">
-        <div>
-            <div id="img-preview"></div>
-
+        <div class="text-center">
+            <div class="image-container" id="img-preview" style="max-width: 100%;max-height: 200px;background-color:dimgrey">
+                <p>100px 100px</p>
+            </div>
             <label class="custom-file-upload">
                 <input asp-for="Image" type="file" name="file" id="file" accept="image/*" onchange="fileCheck(this); " />
                 Upload
             </label>
-            
             @*<input class="btn" type="submit" value="Uplaod" />*@
         </div>
         <div>
@@ -40,7 +42,7 @@
 
     @*Script to Preview the selected Image*@
     <script>
-                    const chooseFile = document.getElementById("file");
+        const chooseFile = document.getElementById("file");
         const imgPreview = document.getElementById("img-preview");
         chooseFile.addEventListener("change", function () {
             getImgData();
@@ -52,7 +54,7 @@
                 fileReader.readAsDataURL(files);
                 fileReader.addEventListener("load", function () {
                     imgPreview.style.display = "block";
-                    imgPreview.innerHTML = '<img src="' + this.result + '" />';
+                    imgPreview.innerHTML = '<img src="' + this.result + '" style="max-width:400px;max-height:200px;object-fit: contain;overflow:none;"/>';
                 });
             }
         }

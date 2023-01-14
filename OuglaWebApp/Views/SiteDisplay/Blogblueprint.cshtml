@@ -1,0 +1,31 @@
+﻿@model System.Data.DataTable
+@{
+    int blogid =Convert.ToInt32(ViewBag.blogid);
+    Layout = "_BlueprintLayout";
+    int index=0;
+}
+
+<div class="image-container" id="img-preview" style="max-width: 100%;max-height: 200px;background-color:dimgrey">
+    @{
+        for (int i = 0; i < Model.Rows.Count; i++)
+        {
+            if (Convert.ToInt32(Model.Rows[i]["BlogId"])==blogid)
+            {
+                index = i;
+                byte[] Binary = (byte[])(Model.Rows[i]["img"]);
+                string base64string = Convert.ToBase64String(Binary, 0, Binary.Length);
+                var imgSrc = "data:image/jpg;base64," + base64string;
+
+                <img src="@imgSrc" class="img-fluid" alt="...">
+            }
+        }
+    }
+</div>
+
+<h1 class="blog-title">
+    @Model.Rows[index]["Title"]
+</h1>
+
+<div class="para">
+    @Html.Raw(Model.Rows[index]["Content"])
+</div>

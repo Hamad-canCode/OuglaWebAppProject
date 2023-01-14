@@ -10,7 +10,7 @@ namespace OuglaWebApp.Controllers
 
         SiteControll siteControl = null;
         BlogHandling blog = new BlogHandling();
-        public static string siteName;
+        public static string siteName; 
         public SiteDisplayController(SiteControll siteControle)
         {
             siteControl = siteControle;
@@ -27,6 +27,7 @@ namespace OuglaWebApp.Controllers
                 siteName = id;
                 @ViewData["Site"] = id;
                 var dataset = blog.GetBlogData(id);
+               
                 return View(dataset);
             }
             else
@@ -71,6 +72,12 @@ namespace OuglaWebApp.Controllers
             }
         }
 
+        public IActionResult displayBlog(int blogid, string title)
+        {
+            var dataset = blog.Blog(blogid,siteName);
+            ViewBag.blogid = blogid;
+            return View("/Views/SiteDisplay/Blogblueprint.cshtml",dataset);
+        }
         [HttpGet]
         public void getAllBlogs()
         {
