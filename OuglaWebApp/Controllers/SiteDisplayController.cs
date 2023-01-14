@@ -57,14 +57,16 @@ namespace OuglaWebApp.Controllers
             }
         }
 
-        [Route("/{id}/about")]
+        [Route("/{id}/blogs")]
         public IActionResult AboutBluePrint(string id)
         {
             id = siteName;
             if (siteControl.ValidateSiteName(id))
             {
                 @ViewData["Site"] = id;
-                return View();
+                var dataset = blog.GetBlogData(id);
+
+                return View(dataset);
             }
             else
             {

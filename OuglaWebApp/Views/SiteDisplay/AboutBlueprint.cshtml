@@ -1,5 +1,39 @@
-﻿@{
+﻿@model System.Data.DataTable
+@{
     Layout = "_BlueprintLayout";
 }
 
-this  is about sec
+
+<div class="container">
+    <h2>My Blogs:</h2>
+    <div class="row">
+        @{
+            int count = Model.Rows.Count;
+            if (count > 0)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    byte[] Binary = (byte[])(Model.Rows[i]["img"]);
+                    string base64string = Convert.ToBase64String(Binary, 0, Binary.Length);
+                    var imgSrc = "data:image/jpg;base64," + base64string;
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="@imgSrc" class="img-fluid" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@Model.Rows[i]["Title"]</h5>
+                            <a asp-controller="SiteDisplay" asp-action="displayBlog" asp-route-blogid="@Model.Rows[i]["BlogId"]" asp-route-title="@Model.Rows[i]["Title"]" class="btn btn-primary">Read Blog</a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="text-center">
+                    <p>No Articles yet</p>
+                </div>
+            }
+
+
+        }
+    </div>
+</div>
