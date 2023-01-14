@@ -36,6 +36,7 @@ namespace OuglaWebApp.Controllers
                     if (signup.validSiteName)
                     {
                         signup.CreateBlogTable(infoModel);
+                        signup.DefaultEntryInPageContent(infoModel.Sitename);
                         return Redirect("/"+infoModel.Sitename);
                     }
                     else

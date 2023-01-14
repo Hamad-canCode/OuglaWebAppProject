@@ -1,6 +1,5 @@
 ﻿@model System.Data.DataTable
 @{
-    var log = TempData["logged"];
 
     Layout = "_BlueprintLayout";
 }
@@ -35,37 +34,54 @@
     <h2>My Blogs:</h2>
     <div class="row">
         @{
-            int count = Model.Rows.Count;
-            if (count==0)
+            if (Convert.ToBoolean(TempData["logged"]))
             {
-                <div class="text-center">
-                    <p>No Articles yet</p>
-                </div>
-            }
-            
-            else
-            {
-                int iterator = 3;
-                for (int i = 0; i < count; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    if (i < iterator)
-                    {
-                        byte[] Binary = (byte[])(Model.Rows[i]["img"]);
-                        string base64string = Convert.ToBase64String(Binary, 0, Binary.Length);
-                        var imgSrc = "data:image/jpg;base64," + base64string;
-
-                        <div class="card" style="width: 18rem;">
-                            <img src="@imgSrc" class="img-fluid" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">@Model.Rows[i]["Title"]</h5>
-                                <a asp-controller="SiteDisplay" asp-action="displayBlog" asp-route-blogid="@Model.Rows[i]["BlogId"]" asp-route-title="@Model.Rows[i]["Title"]" class="btn btn-primary">Read Blog</a>
-                            </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="~/images/blank.png" class="img-fluid" alt="..." />
+                        <div class="card-body">
+                            <h5 class="card-title">Blog @i</h5>
+                            <a asp-controller="SiteDisplay" asp-action="displayBlog" asp-route-blogid="" asp-route-title="" class="btn btn-primary">Read Blog</a>
                         </div>
-                    }
-
-
+                    </div>
                 }
             }
+            else
+            {
+                int count = Model.Rows.Count;
+                if (count == 0)
+                {
+                    <div class="text-center">
+                        <p>No Articles yet</p>
+                    </div>
+                }
+
+                else
+                {
+                    int iterator = 3;
+                    for (int i = 0; i < count; i++)
+                    {
+                        if (i < iterator)
+                        {
+                            byte[] Binary = (byte[])(Model.Rows[i]["img"]);
+                            string base64string = Convert.ToBase64String(Binary, 0, Binary.Length);
+                            var imgSrc = "data:image/jpg;base64," + base64string;
+
+                            <div class="card" style="width: 18rem;">
+                                <img src="@imgSrc" class="img-fluid" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.Rows[i]["Title"]</h5>
+                                    <a asp-controller="SiteDisplay" asp-action="displayBlog" asp-route-blogid="@Model.Rows[i]["BlogId"]" asp-route-title="@Model.Rows[i]["Title"]" class="btn btn-primary">Read Blog</a>
+                                </div>
+                            </div>
+                        }
+
+
+                    }
+                }
+            }
+
           
         }
 

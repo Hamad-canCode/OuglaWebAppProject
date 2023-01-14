@@ -12,7 +12,7 @@ namespace OuglaWebApp.DataLogic
     {
 
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-M4962FO\MSSQLSERVER03;Initial Catalog=ougla;Integrated Security=True;TrustServerCertificate=true");
-        public DataTable dt = new DataTable();
+
         public BlogHandling()
         {
 

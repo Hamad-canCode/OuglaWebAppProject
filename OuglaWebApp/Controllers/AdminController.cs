@@ -48,7 +48,7 @@ namespace OuglaWebApp.Controllers
             if (signUp.LogIn(infoModel,siteName))
             {
                 TempData["siteName"] = siteName;
-                TempData["logged"]= "true";
+                TempData["logged"]= true;
                 TempData["verified"] = true;
                 return Redirect("/" + siteName+ "/admin/editor");
                

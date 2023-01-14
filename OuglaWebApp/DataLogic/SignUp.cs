@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using OuglaWebApp.Models;
+using System.Reflection.Metadata;
 
 namespace OuglaWebApp.DataLogic
 {
@@ -38,6 +39,13 @@ namespace OuglaWebApp.DataLogic
             con.Close();
         }
 
+        public void DefaultEntryInPageContent(string siteName)
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand($"INSERT INTO PageContent (sitename,About,ThemeColorCode) VALUES('{siteName}', '','#9B59B6');", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
         public bool LogIn(Info infoModel,string siteName)
         {
             var tempUser = _context.Infos.FirstOrDefault(u => u.Ownername == infoModel.Ownername && u.Password == infoModel.Password && u.Sitename == siteName);

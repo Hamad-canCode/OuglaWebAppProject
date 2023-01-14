@@ -41,13 +41,13 @@ namespace OuglaWebApp.Controllers
         {
             bool verified = Convert.ToBoolean(TempData["verified"]);
             TempData.Keep("verified");
-            string logged="";
+            bool logged=false;
             if (TempData["logged"]!=null)
             {
-                logged = Convert.ToString(TempData["logged"]);
+                logged = Convert.ToBoolean(TempData["logged"]);
             }
             
-            if ( verified && logged=="true")
+            if ( verified && logged==true)
             {
                 return View("HomeBluePrint");
             }
