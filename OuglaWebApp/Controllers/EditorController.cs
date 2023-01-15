@@ -29,16 +29,16 @@ namespace OuglaWebApp.Controllers
                 {
                     using (var target = new MemoryStream())
                     {
-                        await logo.CopyToAsync(target);
-                        content.logoImg = target.ToArray();
+                        await Banner.CopyToAsync(target);
+                        content.BannerImg = target.ToArray();
                     }
                 }
                 if (objImg != null)
                 {
                     using (var target = new MemoryStream())
                     {
-                        await logo.CopyToAsync(target);
-                        content.logoImg = target.ToArray();
+                        await objImg.CopyToAsync(target);
+                        content.ObjectImg = target.ToArray();
                     }
                 }
 
@@ -47,19 +47,6 @@ namespace OuglaWebApp.Controllers
             {
                 TempData["msg"] = "<script>alert('Oops! Something went wrong');</script>";
                 return RedirectToAction("BlogEditor", "Blog");
-            }
-        }
-        public async Task<byte[]> ImgConversion(IFormFile file,string ImgType) 
-        {
-            byte[] imgInByte= null;
-            if (file != null)
-            {
-                using (var target = new MemoryStream())
-                {
-                    await file.CopyToAsync(target);
-                    imgInByte = target.ToArray();
-                }
-                return imgInByte;
             }
         }
     }

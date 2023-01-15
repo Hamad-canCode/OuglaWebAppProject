@@ -11,11 +11,41 @@ namespace OuglaWebApp.DataLogic
         
         public void UploadContent(Content content,string siteName)
         {
+            bool condition=false;
             con.Open();
-            if (true)
+            if (content.about!=null)
             {
-
+                upadateAbout(content.about,siteName);
             }
+            if (content.TwitterLink != null)
+            {
+                upadateTwitter(content.TwitterLink, siteName);
+            }
+            if (content.InstagramLink != null)
+            {
+                upadateInsta(content.InstagramLink, siteName);
+            }
+            if (content.LinkedInLink != null)
+            {
+                upadateLinkedIn(content.LinkedInLink, siteName);
+            }
+            if (content.ThemeColorCode != null)
+            {
+                upadateThemeColorCode(content.ThemeColorCode, siteName);
+            }
+            if (content.logoImg != null)
+            {
+                upadateLogoImg(content.logoImg, siteName);
+            }
+            if (content.BannerImg != null)
+            {
+                upadateBanner(content.BannerImg, siteName);
+            }
+            if (content.ObjectImg != null)
+            {
+                upadateObjImg(content.ObjectImg, siteName);
+            }
+
             con.Close();
         }
         public void upadateAbout(string content, string sitename)
@@ -43,17 +73,17 @@ namespace OuglaWebApp.DataLogic
             SqlCommand cmd = new SqlCommand($"UPDATE PageContent SET ThemeColorCode = '{content}' WHERE sitename = '{content}';", con);
             cmd.ExecuteNonQuery();
         }
-        public void upadateLogoImg(string content, string sitename)
+        public void upadateLogoImg(byte[] content, string sitename)
         {
             SqlCommand cmd = new SqlCommand($"UPDATE PageContent SET logoImg = {content} WHERE sitename = '{content}';", con);
             cmd.ExecuteNonQuery();
         }
-        public void upadateBanner(string content, string sitename)
+        public void upadateBanner(byte[] content, string sitename)
         {
             SqlCommand cmd = new SqlCommand($"UPDATE PageContent SET BannerImg = {content} WHERE sitename = '{content}';", con);
             cmd.ExecuteNonQuery();
         }
-        public void upadateObjImg(string content, string sitename)
+        public void upadateObjImg(byte[] content, string sitename)
         {
             SqlCommand cmd = new SqlCommand($"UPDATE PageContent SET ObjectImg = {content} WHERE sitename = '{content}';", con);
             cmd.ExecuteNonQuery();
