@@ -12,42 +12,6 @@ namespace OuglaWebApp.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> EditorContent(Content content, IFormFile logo,IFormFile Banner, IFormFile objImg)
-        {
-            try
-            {
-                if (logo != null)
-                {
-                    using (var target = new MemoryStream())
-                    {
-                        await logo.CopyToAsync(target);
-                        content.logoImg = target.ToArray();
-                    }
-                }
-                if (Banner != null)
-                {
-                    using (var target = new MemoryStream())
-                    {
-                        await Banner.CopyToAsync(target);
-                        content.BannerImg = target.ToArray();
-                    }
-                }
-                if (objImg != null)
-                {
-                    using (var target = new MemoryStream())
-                    {
-                        await objImg.CopyToAsync(target);
-                        content.ObjectImg = target.ToArray();
-                    }
-                }
-
-            }
-            catch (Exception)
-            {
-                TempData["msg"] = "<script>alert('Oops! Something went wrong');</script>";
-                return RedirectToAction("BlogEditor", "Blog");
-            }
-        }
+      
     }
 }

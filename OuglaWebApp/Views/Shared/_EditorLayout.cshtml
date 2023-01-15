@@ -18,7 +18,7 @@
 
         <div class="sidebar col-lg-2 col-md-2 col-xl-2 bg-secondary">
             <div class="functioms">
-                <form id="editform" class="" method="post" enctype="multipart/form-data" asp-action="EditorContent" asp-controller="Editor">
+                <form id="editform" class="" method="post" enctype="multipart/form-data" asp-action="EditorContent" asp-controller="SiteDisplay">
                     <table>
                         <tr>
                             <td>
@@ -72,12 +72,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <button class="round-button" name="#E74C3C" style="background: #E74C3C;"></button>
-                                <button class="round-button" name="#9B59B6" style="background: #9B59B6;"></button>
-                                <button class="round-button" name="#3498DB" style="background: #3498DB;"></button>
-                                <button class="round-button" name="#2ECC71" style="background: #2ECC71;"></button>
-                                <button class="round-button" name="#F1C40F" style="background: #F1C40F;"></button>
+                            <td>""
+                                <button asp-for="themeColorCode" class="round-button" name="#E74C3C" style="background: #E74C3C;"></button>
+                                <button asp-for="themeColorCode" class="round-button" name="#9B59B6" style="background: #9B59B6;"></button>
+                                <button asp-for="themeColorCode" class="round-button" name="#3498DB" style="background: #3498DB;"></button>
+                                <button asp-for="themeColorCode" class="round-button" name="#F1C40F" style="background: #F1C40F;"></button>
+                                <button asp-for="themeColorCode" class="round-button" name="#2ECC71" style="background: #2ECC71;"></button>
                             </td>
                         </tr>
                     </table>
@@ -95,7 +95,7 @@
         </div>
     </div>
 
-
+    @TempData["msgForEditor"]
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
