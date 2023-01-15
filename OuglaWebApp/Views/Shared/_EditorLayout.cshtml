@@ -1,4 +1,4 @@
-﻿@model Content
+﻿@model DataTableModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +23,10 @@
                         <tr>
                             <td>
                                 <label>Logo: </label>
+
                                 <label class="custom-file-upload">
                                     <input type="file" value="Logo" name="logo" id="logo" accept="image/*" title="" />
-                                    Upload
+                                    Hello
                                 </label>
                             </td>
                         </tr>
@@ -34,7 +35,6 @@
                                 <label>Banner Image: </label>
                                 <label class="custom-file-upload">
                                     <input type="file" value="Banner" name="Banner" id="Banner" accept="image/*" title="" />
-                                    Upload
                                 </label>
                             </td>
                         </tr>
@@ -43,7 +43,6 @@
                                 <label>Obj Image: </label>
                                 <label class="custom-file-upload">
                                     <input type="file" value="objImg" name="objImg" id="objImg" accept="image/*" title="" />
-                                    Upload
                                 </label>
                             </td>
                         </tr>
@@ -73,19 +72,18 @@
                         </tr>
                         <tr>
                             <td>""
-                                <button asp-for="themeColorCode" class="round-button" name="#E74C3C" style="background: #E74C3C;"></button>
-                                <button asp-for="themeColorCode" class="round-button" name="#9B59B6" style="background: #9B59B6;"></button>
-                                <button asp-for="themeColorCode" class="round-button" name="#3498DB" style="background: #3498DB;"></button>
-                                <button asp-for="themeColorCode" class="round-button" name="#F1C40F" style="background: #F1C40F;"></button>
-                                <button asp-for="themeColorCode" class="round-button" name="#2ECC71" style="background: #2ECC71;"></button>
+                                <button type="button" class="round-button" name="ThemeColorCode" value="#9B59B6" style="background: #9B59B6;"></button>
+                                <button type="button" class="round-button" name="ThemeColorCode" value="#E74C3C" style="background: #E74C3C;"></button>
+                                <button type="button" class="round-button" name="ThemeColorCode" value="#3498DB" style="background: #3498DB;"></button>
+                                <button type="button" class="round-button" name="ThemeColorCode" value="#F1C40F" style="background: #F1C40F;"></button>
+                                <button type="button" class="round-button" name="ThemeColorCode" value="#2ECC71" style="background: #2ECC71;"></button>
                             </td>
                         </tr>
                     </table>
                 </form>
             </div>
             <div class="buttonContainer">
-                <input type="submit" class="btn btn-light" value="Editor" href="/@TempData["siteName"]/admin/blogeditor"/>
-                <button class="btn btn-light" asp-route="~/@TempData["siteName"]/admin/blogeditor" href="~/@TempData["siteName"]/admin/blogeditor">Editor</button>
+                <input type="submit" class="btn btn-light" value="Editor" href="/@TempData["siteName"]/admin/blogeditor" runat="server"/>
                 <input type="submit" class="btn btn-primary" value="Publish" form="editform"/>
             </div>
         </div>

@@ -11,6 +11,7 @@ namespace OuglaWebApp.Controllers
         SiteControll siteControl = null;
         BlogHandling blog = new BlogHandling();
         Editor editor = new Editor();
+        DataTableModel dt = new DataTableModel();
         public static string siteName; 
         public SiteDisplayController(SiteControll siteControle)
         {
@@ -27,9 +28,11 @@ namespace OuglaWebApp.Controllers
             {
                 siteName = id;
                 @ViewData["Site"] = id;
-                var dataset = blog.GetBlogData(id);
-               
-                return View(dataset);
+                //var dataset = blog.GetBlogData(id);
+                //var pageContentDataset = editor.GetPageContent(id);
+                dt.Blogs= blog.GetBlogData(id);
+                dt.PageContent= editor.GetPageContent(id);
+                return View(dt);
             }
             else
             {
@@ -51,7 +54,7 @@ namespace OuglaWebApp.Controllers
             
             if ( verified && logged==true)
             {
-                return View("HomeBluePrint");
+                return View("/Views/SiteDisplay/Homeblueprint.cshtml",new DataTableModel());
             }
             else
             {
@@ -84,7 +87,7 @@ namespace OuglaWebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditorContent(Content content, IFormFile logo, IFormFile Banner, IFormFile objImg)
+        public async Task<IActionResult> EditorContent(DataTableModel content, IFormFile logo, IFormFile Banner, IFormFile objImg,string color)
         {
             content.sitename = siteName;
             try

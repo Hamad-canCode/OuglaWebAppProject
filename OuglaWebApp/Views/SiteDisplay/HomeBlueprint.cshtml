@@ -1,30 +1,107 @@
-﻿@model System.Data.DataTable
+﻿@model DataTableModel
 @{
-
+    bool logged = Convert.ToBoolean(TempData["logged"]);
     Layout = "_BlueprintLayout";
+    TempData["ThemeColor"] = Model.Rows[0]["ThemeColorCode"]
 }
 <!-- Full Page Image Header with Vertically Centered Content -->
-<header class="masthead">
-    <div class="container h-100">
-        <div class="row h-100 align-items-center">
-            <div class="col-12 text-center">
-                <h1 class="fw-light">Vertically Centered Masthead Content</h1>
-                <p class="lead">A great starter layout for a landing page</p>
-            </div>
-        </div>
-    </div>
-</header>
+@{
+    if (logged==false)
+    {
+        if (Model.PageContent.Rows[0]["BannerImg"] != null)
+        {
+            byte[] Binary = (byte[])(Model.PageContent.Rows[0]["ObjectImg"]);
+            string base64string = Convert.ToBase64String(Binary, 0, Binary.Length);
+            var imgSrc = "data:image/jpg;base64," + base64string;
 
+            <header class="masthead" style="background-image: url('@imgSrc');">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12 text-center">
+                            <h1 class="fw-light">Vertically Centered Masthead Content</h1>
+                            <p class="lead">A great starter layout for a landing page</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        }
+        else
+        {
+            <header class="masthead" style="background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12 text-center">
+                            <h1 class="fw-light">Vertically Centered Masthead Content</h1>
+                            <p class="lead">A great starter layout for a landing page</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        }
+    }
+    else
+    {
+        <header class="masthead" style="background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 text-center">
+                        <h1 class="fw-light">Vertically Centered Masthead Content</h1>
+                        <p class="lead">A great starter layout for a landing page</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+    }
+
+}
 <div class="about-section">
     <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-6">
             <h2>About Me</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-            </p>
+            @{
+                if (logged ==false)
+                {
+                    if (Model.PageContent.Rows[0]["About"] != null)
+                    {
+                        <p>@Model.PageContent.Rows[0]["About"]</p>
+                    }
+                    else
+                    {
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                        </p>
+                    }
+                }
+                else
+                {
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                    </p>
+                }
+            }
+                
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6">
-            <img src="~/default.png" class="img-fluid" alt="...">
+            @{
+                if (logged == false)
+                {
+                    if (Model.PageContent.Rows[0]["ObjectImg"] != null)
+                    {
+                        byte[] Binary = (byte[])(Model.PageContent.Rows[0]["ObjectImg"]);
+                        string base64string = Convert.ToBase64String(Binary, 0, Binary.Length);
+                        var imgSrc = "data:image/jpg;base64," + base64string;
+                        <img src="@imgSrc" class="img-fluid" alt="...">
+                    }
+                    else
+                    {
+                        <img src="~/default.png" class="img-fluid" alt="...">
+                    }
+                }
+                else
+                {
+                    <img src="~/default.png" class="img-fluid" alt="...">
+                }
+            }
         </div>
     </div>
 </div>
@@ -34,7 +111,7 @@
     <h2>My Blogs:</h2>
     <div class="row">
         @{
-            if (Convert.ToBoolean(TempData["logged"]))
+            if (logged != false)
             {
                 for (int i = 0; i < 3; i++)
                 {
@@ -49,7 +126,7 @@
             }
             else
             {
-                int count = Model.Rows.Count;
+                int count = Model.Blogs.Rows.Count;
                 if (count == 0)
                 {
                     <div class="text-center">
@@ -64,15 +141,15 @@
                     {
                         if (i < iterator)
                         {
-                            byte[] Binary = (byte[])(Model.Rows[i]["img"]);
+                            byte[] Binary = (byte[])(Model.Blogs.Rows[i]["img"]);
                             string base64string = Convert.ToBase64String(Binary, 0, Binary.Length);
                             var imgSrc = "data:image/jpg;base64," + base64string;
 
                             <div class="card" style="width: 18rem;">
                                 <img src="@imgSrc" class="img-fluid" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">@Model.Rows[i]["Title"]</h5>
-                                    <a asp-controller="SiteDisplay" asp-action="displayBlog" asp-route-blogid="@Model.Rows[i]["BlogId"]" asp-route-title="@Model.Rows[i]["Title"]" class="btn btn-primary">Read Blog</a>
+                                    <h5 class="card-title">@Model.Blogs.Rows[i]["Title"]</h5>
+                                    <a asp-controller="SiteDisplay" asp-action="displayBlog" asp-route-blogid="@Model.Blogs.Rows[i]["BlogId"]" asp-route-title="@Model.Blogs.Rows[i]["Title"]" class="btn btn-primary">Read Blog</a>
                                 </div>
                             </div>
                         }
@@ -81,8 +158,6 @@
                     }
                 }
             }
-
-          
         }
 
     </div>

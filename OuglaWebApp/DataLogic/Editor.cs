@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OuglaWebApp.Models;
 using System;
+using System.Data;
 using System.Reflection.Metadata;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace OuglaWebApp.DataLogic
     {
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-M4962FO\MSSQLSERVER03;Initial Catalog=ougla;Integrated Security=True;TrustServerCertificate=true");
         
-        public void UploadContent(Content content,string siteName)
+        public void UploadContent(DataTableModel content,string siteName)
         {
             bool condition=false;
             con.Open();
@@ -103,6 +104,23 @@ namespace OuglaWebApp.DataLogic
             }
 
             return sb.ToString();
+        }
+
+        public DataTable GetPageContent(string siteName)
+        {
+
+            var dataset = new DataTable();
+
+            con.Open();
+            using (SqlCommand com = new SqlCommand($"select * from PageContent where sitename='{siteName}'", con))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(com))
+                {
+                    adapter.Fill(dataset);
+                }
+            }
+            con.Close();
+            return dataset;
         }
     }
 }
