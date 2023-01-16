@@ -1,13 +1,32 @@
-﻿.masthead {
-    height: 100vh;
-    min-height: 500px;
-    background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+﻿body{
+    overflow-x:hidden;
 }
 
-.card {
-    margin: 30px;
-    margin-top: 30px;
+.footer, .page-wrap:after {
+    height: 200px;
+}
+
+.footer {
+    background-color: black;
+    height: 130px;
+    margin-bottom:-100%;
+}
+
+.iconImg{
+    margin-top:45px;
+    max-width:100px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.privacy-para {
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+
+}
+
+.nav-links {
+    margin-left: 40px;
+    margin-top: 20px;
 }

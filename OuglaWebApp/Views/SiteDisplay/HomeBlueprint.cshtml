@@ -4,22 +4,24 @@
     Layout = "_BlueprintLayout";
 }
 <!-- Full Page Image Header with Vertically Centered Content -->
-
+<head>
+    <link href="~/css/homeblueprintstylesheet.css" rel="stylesheet" />
+</head>
 @{
     if (logged==false)
     {
-        if (Model.PageContent.Rows[0]["BannerImg"] != null)
+        if (Model.PageContent.Rows[0]["BannerImg"].ToString() != "")
         {
-            byte[] Binary = (byte[])(Model.PageContent.Rows[0]["ObjectImg"]);
+            byte[] Binary = (byte[])(Model.PageContent.Rows[0]["BannerImg"]);
             string base64string = Convert.ToBase64String(Binary, 0, Binary.Length);
             var imgSrc = "data:image/jpg;base64," + base64string;
 
-            <header class="masthead" style="background-image: url('@imgSrc');">
+            <header class="masthead bannerimg" style="background-image: url('@imgSrc');">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12 text-center">
-                            <h1 class="fw-light">Vertically Centered Masthead Content</h1>
-                            <p class="lead">A great starter layout for a landing page</p>
+                            <h1 class="fw-light heading">Writing that Inspires</h1>
+                            <p class="lead">Explore the world through words!!!</p>
                         </div>
                     </div>
                 </div>
@@ -27,12 +29,12 @@
         }
         else
         {
-            <header class="masthead" style="background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');">
+            <header class="masthead bannerimg" style="background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12 text-center">
-                            <h1 class="fw-light">Vertically Centered Masthead Content</h1>
-                            <p class="lead">A great starter layout for a landing page</p>
+                            <h1 class="fw-light">Writing that Inspires</h1>
+                            <p class="lead">Explore the world through words!!!</p>
                         </div>
                     </div>
                 </div>
@@ -56,12 +58,13 @@
 }
 <div class="about-section">
     <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-6">
-            <h2>About Me</h2>
+      
+        <div class="col-xl-6 col-lg-6 col-md-6 aboutText">
+            <h2 class="aboutHeading">About Me</h2>
             @{
                 if (logged ==false)
                 {
-                    if (Model.PageContent.Rows[0]["About"] != null)
+                    if (Model.PageContent.Rows[0]["About"].ToString() != "")
                     {
                         <p>@Model.PageContent.Rows[0]["About"]</p>
                     }
@@ -81,25 +84,25 @@
             }
                 
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-6">
+        <div class="objImg col-xl-6 col-lg-6 col-md-6 text-cener">
             @{
                 if (logged == false)
                 {
-                    if (Model.PageContent.Rows[0]["ObjectImg"] != null)
+                    if (Model.PageContent.Rows[0]["ObjectImg"].ToString() != "")
                     {
                         byte[] Binary = (byte[])(Model.PageContent.Rows[0]["ObjectImg"]);
                         string base64string = Convert.ToBase64String(Binary, 0, Binary.Length);
                         var imgSrc = "data:image/jpg;base64," + base64string;
-                        <img src="@imgSrc" class="img-fluid" alt="...">
+                        <img src="@imgSrc" class="img-fluid" alt="..." style="width:100%;">
                     }
                     else
                     {
-                        <img src="~/default.png" class="img-fluid" alt="...">
+                        <img src="~/default.png" class="img-fluid" alt="..." style="width:100%;">
                     }
                 }
                 else
                 {
-                    <img src="~/default.png" class="img-fluid" alt="...">
+                    <img src="~/default.png" class="img-fluid" alt="..." style="width:100%;">
                 }
             }
         </div>
@@ -107,16 +110,19 @@
 </div>
 
 
-<div class="container">
-    <h2>My Blogs:</h2>
+<div class="blogs container">
+    <h2 class="blogHeading text-center"><b>My Blogs</b></h2>
     <div class="row">
         @{
             if (logged != false)
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    <div class="card" style="width: 18rem;">
-                        <img src="~/images/blank.png" class="img-fluid" alt="..." />
+                    <div class="card" style="width: 15rem;">
+                        <div class="imgContainer">
+                            <img src="~/images/blank.png" class="img-fluid card-pic" style="width:100%;" alt="..." />
+                        </div>
+                    
                         <div class="card-body">
                             <h5 class="card-title">Blog @i</h5>
                             <a asp-controller="SiteDisplay" asp-action="displayBlog" asp-route-blogid="" asp-route-title="" class="btn btn-primary">Read Blog</a>
@@ -146,7 +152,10 @@
                             var imgSrc = "data:image/jpg;base64," + base64string;
 
                             <div class="card" style="width: 18rem;">
-                                <img src="@imgSrc" class="img-fluid" alt="...">
+                                <div class="imgContainer">
+                                    <img src="@imgSrc" class="img-fluid card-pic" style="width:100%;" alt="...">
+                                </div>
+                                
                                 <div class="card-body">
                                     <h5 class="card-title">@Model.Blogs.Rows[i]["Title"]</h5>
                                     <a asp-controller="SiteDisplay" asp-action="displayBlog" asp-route-blogid="@Model.Blogs.Rows[i]["BlogId"]" asp-route-title="@Model.Blogs.Rows[i]["Title"]" class="btn btn-primary">Read Blog</a>

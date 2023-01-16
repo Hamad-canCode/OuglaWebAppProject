@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.Extensions.Logging;
 using OuglaWebApp.DataLogic;
 using OuglaWebApp.Models;
@@ -22,6 +23,7 @@ namespace OuglaWebApp.Controllers
         
         public IActionResult HomeBluePrint(string id)
         {
+
             TempData["verified"] = null;
             TempData["logged"] = null;
             if (siteControl.ValidateSiteName(id))
@@ -32,6 +34,7 @@ namespace OuglaWebApp.Controllers
                 //var pageContentDataset = editor.GetPageContent(id);
                 dt.Blogs= blog.GetBlogData(id);
                 dt.PageContent= editor.GetPageContent(id);
+                string a = dt.PageContent.Rows[0]["BannerImg"].ToString();
                 return View(dt);
             }
             else

@@ -1,9 +1,21 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string site = "";
+    if (@TempData["site"] != null)
+    {
+        site = @TempData["site"].ToString();
+        TempData.Keep("site");
+    }
+
+}
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - OuglaWebApp</title>
+    <link href="~/css/blogeditorstylesheet.css" rel="stylesheet" />
     <link href="~/css/editorlayout.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     @*    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
@@ -15,9 +27,10 @@
     <div class="row">
 
         <div class="sidebar col-lg-2 col-md-2 col-xl-2" style="background-color:#131920">
-            <div class="buttonContainer">
-                <input type="submit" class="btn btn-light" value="Edit Site" />
-                <input type="submit" class="btn btn-primary" value="Publish" />
+            <div class="empty">.</div>
+            <div class="buttonContainer buttonContainerX">
+                <a class="editorBtn nav-link btn btn-light" href="~/@site/admin/editor" runat="server">Editor</a>
+                <input type="submit" class="submitBtn btn btn-primary" value="Publish" form="" />
             </div>
         </div>
 

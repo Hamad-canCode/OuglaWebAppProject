@@ -54,7 +54,7 @@
                 fileReader.readAsDataURL(files);
                 fileReader.addEventListener("load", function () {
                     imgPreview.style.display = "block";
-                    imgPreview.innerHTML = '<img src="' + this.result + '" style="max-width:400px;max-height:200px;object-fit: contain;overflow:none;"/>';
+                    imgPreview.innerHTML = '<img src="' + this.result + '" style="max-width:100%;max-height:400px;object-fit: contain;overflow:none;"/>';
                 });
             }
         }

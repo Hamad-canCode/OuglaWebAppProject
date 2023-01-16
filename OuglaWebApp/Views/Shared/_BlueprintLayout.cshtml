@@ -76,17 +76,43 @@
 
     </header>
 
-    <div class="container">
+    <div class="container page-wrap">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - OuglaWebApp - <a asp-area="" asp-controller="" asp-action=""></a>
+        <div class="">
+            
+            <div class="row">
+                <div class="navigation-menu col-lg-4 col-md-4 col-xl-4 ">
+                    <ul class="nav-links">
+                        <li><a>Home</a></li>
+                        <li><a>Blogs</a></li>
+                    </ul>
+                </div>
+                <div class="links col-lg-4 col-md-4 col-xl-4 text-center">
+                    <img class="iconImg" src="~/images/icons8-twitter-circled-48.png" />
+                    <img class="iconImg" src="~/images/icons8-instagram-48.png" />
+                    <img class="iconImg" src="~/images/icons8-linkedin-circled-48.png" />
+                </div>
+                <div class="privacy col-lg-4 col-md-4 col-xl-4 text-center">
+                    <p class="privacy-para">
+                        If you want to create an Awsome blog site like this without coding, then...
+                    </p>
+                    <button type="button" id="button" class="btn btn-light" href="~/blogs" runat="server">Sign-Up</button>
+                </div>
+            </div>
         </div>
     </footer>
+    <script>
+
+        document.getElementById('button').onclick = function () {
+            window.open("https://localhost:7206");
+        };
+
+    </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

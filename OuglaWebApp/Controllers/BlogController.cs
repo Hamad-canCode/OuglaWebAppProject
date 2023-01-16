@@ -43,7 +43,7 @@ namespace OuglaWebApp.Controllers
                     }
                     blog.UploadBlog(blogModel, siteName);
                     TempData["msg"] = "<script>alert('Your Blog has been Published!!!');</script>";
-                    return RedirectToAction("BlogEditor", "Blog");
+                    return Redirect("/"+siteName);
                 }
                 else
                 {

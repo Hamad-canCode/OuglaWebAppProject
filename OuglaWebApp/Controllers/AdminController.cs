@@ -28,6 +28,8 @@ namespace OuglaWebApp.Controllers
                 {
                     siteName = id;
                     ValidateSiteName = true;
+                    TempData["site"] = siteName;
+
                     return View("~/Views/Admin/AdminLogin.cshtml");
                 }
                 else
@@ -48,6 +50,7 @@ namespace OuglaWebApp.Controllers
             if (signUp.LogIn(infoModel,siteName))
             {
                 TempData["siteName"] = siteName;
+
                 TempData["logged"]= true;
                 TempData["verified"] = true;
                 return Redirect("/" + siteName+ "/admin/editor");

@@ -3,9 +3,12 @@
     Layout = "_BlueprintLayout";
 }
 
+<head>
+    <link href="~/css/homeblueprintstylesheet.css" rel="stylesheet" />
+</head>
 
 <div class="container">
-    <h2>My Blogs:</h2>
+    <h2 class="blogss text-center"><b>My Blogs</b></h2>
     <div class="row">
         @{
             int count = Model.Rows.Count;
@@ -18,7 +21,10 @@
                     var imgSrc = "data:image/jpg;base64," + base64string;
 
                     <div class="card" style="width: 18rem;">
-                        <img src="@imgSrc" class="img-fluid" alt="...">
+                        <div class="imgContainer">
+                            <img src="@imgSrc" class="img-fluid card-pic" style="width:100%;" alt="...">
+                        </div>
+
                         <div class="card-body">
                             <h5 class="card-title">@Model.Rows[i]["Title"]</h5>
                             <a asp-controller="SiteDisplay" asp-action="displayBlog" asp-route-blogid="@Model.Rows[i]["BlogId"]" asp-route-title="@Model.Rows[i]["Title"]" class="btn btn-primary">Read Blog</a>

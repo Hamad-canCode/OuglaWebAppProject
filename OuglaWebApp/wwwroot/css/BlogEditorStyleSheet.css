@@ -1,0 +1,22 @@
+﻿.editorBtn {
+    margin-left: 4px;
+    width: 95%;
+}
+
+.submitBtn {
+    margin-top: 7px;
+    width: 95%;
+}
+.empty {
+    height: 485px;
+   color: #131920;
+}
+.buttonContainerX {
+    background-color: #17202A;
+    height: 120px;
+    width: 100%;
+    padding: 15px;
+    margin-left: 8px;
+    border-radius: 15px;
+    margin-top: 100px;
+}

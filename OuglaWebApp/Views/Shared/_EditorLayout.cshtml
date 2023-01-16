@@ -1,4 +1,12 @@
 ﻿@model DataTableModel
+@{
+    string site="";
+    if (@TempData["site"]!=null)
+    {
+        site = @TempData["site"].ToString();
+    }    
+    
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +87,7 @@
                         <tr class="border-bottom">
                             
                             <td class="label-text">
-                                <label>Banner Img: </label>
+                                <label>Banner: </label>
                             </td>
                             <td>
                                 <label class="custom-file-upload">
@@ -139,7 +147,7 @@
                 </form>
             </div>
             <div class="buttonContainer text-center">
-                <input type="submit" class="editorBtn btn btn-light" value="Editor" href="/@TempData["site"]/admin/blogeditor" runat="server"/>
+                <a class="editorBtn nav-link btn btn-light" href="~/@site/admin/blogeditor" runat="server">Editor</a>
                 <input type="submit" class="submitBtn btn btn-primary" value="Publish" form="editform"/>
             </div>
         </div>
@@ -148,13 +156,48 @@
             @RenderBody()
         </div>
     </div>
-
     @TempData["msgForEditor"]
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+                const chooseFile = document.getElementById("objImg");
+        const imgPreview = document.getElementById("masthead");
+        chooseFile.addEventListener("change", function () {
+            getImgData();
+        });
+        function getImgData() {
+            const files = chooseFile.files[0];
+            if (files) {
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(files);
+                fileReader.addEventListener("load", function () {
+                    imgPreview.style.display = "block";
+                    imgPreview.innerHTML = '<img src="' + this.result + '" style="max-width:400px;max-height:200px;object-fit: contain;overflow:none;"/>';
+                });
+            }
+        }
+    </script>
+    <script>
+                const chooseFile = document.getElementById("file");
+        const imgPreview = document.getElementById("img-preview");
+        chooseFile.addEventListener("change", function () {
+            getImgData();
+        });
+        function getImgData() {
+            const files = chooseFile.files[0];
+            if (files) {
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(files);
+                fileReader.addEventListener("load", function () {
+                    imgPreview.style.display = "block";
+                    imgPreview.innerHTML = '<img src="' + this.result + '" style="max-width:400px;max-height:200px;object-fit: contain;overflow:none;"/>';
+                });
+            }
+        }
+    </script>
 </body>
 </html>
 
