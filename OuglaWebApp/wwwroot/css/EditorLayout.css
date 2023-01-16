@@ -1,13 +1,17 @@
 ﻿html, body, .container {
     height: 100%;
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+    overflow-x: hidden;
+    /* Hide horizontal scrollbar */
 }
 
 .sidebar {
-    position: -webkit-sticky;
-    position: sticky;
+
+    position: fixed;
     top: 0;
-    padding-right: 70px;
+    height: 100%;
+    color: white;
+    background-color: #131920;
+    width: 300px;
 }
 
 .container {
@@ -34,14 +38,15 @@ input[type="file"] {
 }
 
 .custom-file-upload {
-        border: 1px solid #ccc;
+    border: 1px solid #ccc;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
-
-    background-image: url('../images/upload.svg');
+    background-color: #17202A;
+    margin-left: 30px;;
+    /*    background-image: url('../images/upload.svg');
     width:20px;
-    height:20px;
+    height:20px;*/
 }
 .round-button {
     display: block;
@@ -56,3 +61,94 @@ input[type="file"] {
     .round-button:hover {
         background: #777555;
     }
+
+
+tr {
+    color: #808B96;
+    height: 50px;
+}
+.label-text{
+    width:100px;
+
+}
+table {
+
+    table-layout: fixed;
+    width: 200px;
+}
+label {
+    margin-left: 10px;
+}
+.form{
+    width:100%;
+}
+.functioms {
+    width: 100%;
+}
+tr.border-bottom td {
+    border-bottom: 3px solid #17202A;
+}
+
+.text-area {
+    width: 90%;
+    min-height: 150px;
+    max-height: 150px;
+    color: white;
+    background-color: #17202A;
+    resize: none;
+    border-radius: 5px;
+    margin-left:10px;
+}
+table{
+    width:215px;
+}
+textarea,input{
+    outline: none;
+}
+.linkBox {
+    color: white;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    background-color: #17202A;
+    width:150px;
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+}
+ul > li {
+    display: inline-block;
+    /* You can also add some margins here to make it look prettier */
+}
+.small-icon{
+    width:30px;
+    margin-left:10px;
+}
+
+.buttonContainer {
+    background-color: #17202A;
+    height: 120px;
+    width: 100%;
+    padding: 15px;
+    margin-left: 8px;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+.editorBtn {
+
+    width: 95%;
+}
+
+.submitBtn {
+    margin-top:7px;
+    width: 95%;
+ 
+}
+
+body::-webkit-scrollbar {
+    width: 0 !important
+}
+.fixed{
+    width:300px;
+}

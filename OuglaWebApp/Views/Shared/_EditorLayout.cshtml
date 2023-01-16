@@ -13,82 +13,138 @@
 </head>
 <body>
 
-
     <div class="row">
-
-        <div class="sidebar col-lg-2 col-md-2 col-xl-2 bg-secondary">
+        
+    <div class="fixed col-lg-2 col-md-2 col-xl-2">.</div>
+        <div class="sidebar col-lg-2 col-md-2 col-xl-2">
             <div class="functioms">
-                <form id="editform" class="" method="post" enctype="multipart/form-data" asp-action="EditorContent" asp-controller="SiteDisplay">
-                    <table>
-                        <tr>
-                            <td>
-                                <label>Logo: </label>
+                <form id="editform" class="form" method="post" enctype="multipart/form-data" asp-action="EditorContent" asp-controller="SiteDisplay">
+                    @*<div class="table">
+                        <div class="row data">
+                            <label class="label">Logo: </label>
 
-                                <label class="custom-file-upload">
-                                    <input type="file" value="Logo" name="logo" id="logo" accept="image/*" title="" />
-                                    Hello
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Banner Image: </label>
-                                <label class="custom-file-upload">
-                                    <input type="file" value="Banner" name="Banner" id="Banner" accept="image/*" title="" />
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Obj Image: </label>
+                            <label class="custom-file-upload">
+                                <input type="file" value="Logo" name="logo" id="logo" accept="image/*" title="" />
+                                Upload
+                            </label>
+                        </div>
+                        <div class="row data">
+                            <label class="label">Banner Image: </label>
+                            <label class="custom-file-upload">
+                                <input type="file" value="Banner" name="Banner" id="Banner" accept="image/*" title="" />
+                            </label>
+                        </div>
+                        <div class="row data">
+                            <label class="label">Obj Image: </label>
+                            <label class="custom-file-upload">
+                                <input type="file" value="objImg" name="objImg" id="objImg" accept="image/*" title="" />
+                            </label>
+                        </div>
+                        <div class="row data">
+                            <label>About Text:</label>
+                            <input type="text" asp-for="about" EnableViewState="False" />
+                        </div>
+                        <div class="row data">
+                            <img src="" />
+                            <input type="text" asp-for="TwitterLink" EnableViewState="False" placeholder="Paste Link" />
+                        </div>
+                        <div class="row data">
+                            <img src="" />
+                            <input type="text" asp-for="InstagramLink" EnableViewState="False" placeholder="Paste Link" />
+                        </div>
+                        <div class="row data">
+                            <img src="" />
+                            <input type="text" asp-for="LinkedInLink" EnableViewState="False" placeholderedr="Paste Link" />
+                        </div>
+                        <div class="row data">
+                            <button type="button" class="round-button" name="ThemeColorCode" value="#9B59B6" style="background: #9B59B6;"></button>
+                            <button type="button" class="round-button" name="ThemeColorCode" value="#E74C3C" style="background: #E74C3C;"></button>
+                            <button type="button" class="round-button" name="ThemeColorCode" value="#3498DB" style="background: #3498DB;"></button>
+                            <button type="button" class="round-button" name="ThemeColorCode" value="#F1C40F" style="background: #F1C40F;"></button>
+                            <button type="button" class="round-button" name="ThemeColorCode" value="#2ECC71" style="background: #2ECC71;"></button>
+                        </div>
+                    </div>*@
+                    <table>
+                        <tr class="border-bottom">
+                            <td class="label-text">
+                                <label>Logo Img: </label>
+                            </td >
+                            <td class="upload">
                                 <label class="custom-file-upload">
                                     <input type="file" value="objImg" name="objImg" id="objImg" accept="image/*" title="" />
+                                    Upload
                                 </label>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="border-bottom">
+                            
+                            <td class="label-text">
+                                <label>Banner Img: </label>
+                            </td>
                             <td>
+                                <label class="custom-file-upload">
+                                    <input type="file" value="objImg" name="objImg" id="objImg" accept="image/*" title="" />
+                                    Upload
+                                </label>
+                            </td>
+                            
+                        </tr class="border-bottom"> 
+                        <tr class="border-bottom">
+                            <td class="label-text">
+                                <label>Obj Img: </label>
+                            </td>
+                            <td>
+                                <label class="custom-file-upload">
+                                    <input type="file" value="objImg" name="objImg" id="objImg" accept="image/*" title="" />
+                                    Upload
+                                </label>
+                            </td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td colspan="2">
                                 <label>About Text:</label>
-                                <input type="text" asp-for="about" EnableViewState="False" />
+                                 <textarea asp-for="about" class="text-area" id="w3review" name="w3review"></textarea>
+                     
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <img src="" />
-                                <input type="text" asp-for="TwitterLink" EnableViewState="False" placeholder="Paste Link" />
+                        <tr class="border-bottom">
+                            <td colspan="2">
+                                <img class="small-icon" src="~/images/icons8-twitter-circled-48.png" />
+                                <input type="text" class="linkBox" asp-for="TwitterLink" EnableViewState="False" placeholder="Paste Link" />
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <img src="" />
-                                <input type="text" asp-for="InstagramLink" EnableViewState="False" placeholder="Paste Link" />
+                        <tr class="border-bottom">
+                            <td colspan="2">
+                                <img class="small-icon" src="~/images/icons8-instagram-48.png" />
+                                <input type="text" class="linkBox" asp-for="InstagramLink" EnableViewState="False" placeholder="Paste Link" />
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <img src="" />
-                                <input type="text" asp-for="LinkedInLink" EnableViewState="False" placeholderedr="Paste Link" />
+                        <tr class="border-bottom">
+                            <td colspan="2">
+                                <img class="small-icon" src="~/images/icons8-linkedin-circled-48.png" />
+                                <input type="text" class="linkBox" asp-for="LinkedInLink" EnableViewState="False" placeholder="Paste Link" />
                             </td>
                         </tr>
-                        <tr>
-                            <td>""
+@*                        <tr class="border-bottom">
+                            <td colspan="2">
+                   
                                 <button type="button" class="round-button" name="ThemeColorCode" value="#9B59B6" style="background: #9B59B6;"></button>
                                 <button type="button" class="round-button" name="ThemeColorCode" value="#E74C3C" style="background: #E74C3C;"></button>
                                 <button type="button" class="round-button" name="ThemeColorCode" value="#3498DB" style="background: #3498DB;"></button>
                                 <button type="button" class="round-button" name="ThemeColorCode" value="#F1C40F" style="background: #F1C40F;"></button>
                                 <button type="button" class="round-button" name="ThemeColorCode" value="#2ECC71" style="background: #2ECC71;"></button>
                             </td>
-                        </tr>
+                        </tr>*@
                     </table>
                 </form>
             </div>
-            <div class="buttonContainer">
-                <input type="submit" class="btn btn-light" value="Editor" href="/@TempData["siteName"]/admin/blogeditor" runat="server"/>
-                <input type="submit" class="btn btn-primary" value="Publish" form="editform"/>
+            <div class="buttonContainer text-center">
+                <input type="submit" class="editorBtn btn btn-light" value="Editor" href="/@TempData["site"]/admin/blogeditor" runat="server"/>
+                <input type="submit" class="submitBtn btn btn-primary" value="Publish" form="editform"/>
             </div>
         </div>
 
-        <div class="content container col-lg-9 col-md-9 col-xl-9 bg-light">
+        <div class="content container col-lg-9 col-md-9 col-xl-9 bg-light" id="content">
             @RenderBody()
         </div>
     </div>

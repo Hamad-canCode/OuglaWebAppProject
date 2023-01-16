@@ -90,6 +90,7 @@ namespace OuglaWebApp.Controllers
         public async Task<IActionResult> EditorContent(DataTableModel content, IFormFile logo, IFormFile Banner, IFormFile objImg,string color)
         {
             content.sitename = siteName;
+            TempData["site"] = siteName;
             try
             {
                 if (logo != null)

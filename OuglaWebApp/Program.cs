@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Connections;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using OuglaWebApp.DataLogic;
@@ -8,6 +11,7 @@ using OuglaWebApp.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<OuglaContext>(optionsBuilder =>
 {
@@ -16,6 +20,7 @@ builder.Services.AddDbContext<OuglaContext>(optionsBuilder =>
 
 builder.Services.AddScoped<SignUp, SignUp>();
 builder.Services.AddScoped<SiteControll, SiteControll>();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 

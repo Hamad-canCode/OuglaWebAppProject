@@ -1,0 +1,21 @@
+﻿
+
+.image-container {
+    max-width: 100%;
+    max-height: 400px;
+    background-color: #C39BD3;
+    background-size: cover;
+}
+
+.blog-title{
+    margin-top:40px;
+    font-size:55px;
+}
+
+.para {
+    margin-top: 25px;
+    margin-right: 110px;
+    margin-left: 110px;
+    font-size: 17px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
